@@ -90,10 +90,6 @@ function App() {
                 <FileText className="h-4 w-4 mr-2" />
                 Documentație
               </Button>
-              <Button variant="outline" size="sm">
-                <Presentation className="h-4 w-4 mr-2" />
-                Prezentare
-              </Button>
             </div>
           </div>
         </div>
@@ -120,7 +116,7 @@ function App() {
                   <Target className="h-4 w-4 text-muted-foreground" />
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-bold text-green-600">100%</div>
+                  <div className="text-2xl font-bold text-orange-600">50%</div>
                   <p className="text-xs text-muted-foreground">Toate obiectivele îndeplinite</p>
                 </CardContent>
               </Card>
