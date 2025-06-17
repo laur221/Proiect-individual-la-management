@@ -6,3 +6,5 @@ cd nume-folder
 pnpm install
 npm run dev
 ```
+sau pentru vizualizare accesați site-ul 
+edumanager.live
