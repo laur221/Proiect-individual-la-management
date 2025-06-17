@@ -39,6 +39,12 @@ function App() {
     if (newTab !== activeTab) {
       setIsTabChanging(true)
       
+      // Scroll la începutul paginii
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      })
+      
       // Delay pentru a crea efect de tranziție
       setTimeout(() => {
         setActiveTab(newTab)
@@ -63,156 +69,321 @@ function App() {
     { 
       id: 'US1', 
       title: 'Autentificare student', 
-      points: 1, 
+      points: 3, 
       status: 'done',
+      category: '🧑‍🎓 Gestionarea Utilizatorilor',
       details: {
-        description: 'SCSP 1: Ca student, vreau să mă autentific în sistem pentru a accesa funcționalitățile.',
+        description: 'Ca student, vreau să mă pot autentifica în sistem folosind email și parolă pentru a accesa informațiile mele academice.',
         acceptanceCriteria: [
-          'Formular React cu câmpuri email și parolă',
-          'Validare live format email și lungime parolă',
-          'API Node.js pentru autentificare cu JWT',
-          'Token JWT cu expirare 24h și rol utilizator',
-          'Mesaje de eroare clare și animații focus/blur'
+          'Formular de login cu câmpuri pentru email și parolă',
+          'Validare client-side pentru format email și lungime parolă',
+          'Autentificare securizată prin API cu JWT tokens',
+          'Sesiune persistentă cu expirare controlată',
+          'Mesaje de eroare clare pentru credențiale greșite',
+          'Redirecționare automată după autentificare reușită'
         ],
         priority: 'High',
         assignee: 'Frontend + Backend',
-        effort: 'Formular UI + API JWT'
+        effort: '3 Story Points'
       }
     },
     { 
       id: 'US2', 
       title: 'Înregistrare utilizatori', 
-      points: 1, 
+      points: 5, 
       status: 'done',
+      category: '🧑‍🎓 Gestionarea Utilizatorilor',
       details: {
-        description: 'SCSP 2: Ca utilizator nou, vreau să mă înregistrez pentru a avea cont în sistem.',
+        description: 'Ca personal administrativ, vreau să pot înregistra noi utilizatori (studenți, profesori) în sistem pentru a le gestiona accesul.',
         acceptanceCriteria: [
-          'Pagină React cu câmpuri nume, email, parolă, tip utilizator',
-          'Validări unicitate email și confirmare parolă',
-          'Endpoint Node.js pentru înregistrare cu validări',
-          'Inserare cont nou cu parolă criptată în MySQL',
-          'Alertă confirmare la înregistrare reușită'
+          'Interfață pentru înregistrarea utilizatorilor noi',
+          'Câmpuri pentru date personale (nume, email, rol)',
+          'Validare unicitate email în baza de date',
+          'Generare automată parolă temporară',
+          'Trimitere email cu credențiale de access',
+          'Setare roluri și permisiuni specifice (student/profesor)'
         ],
         priority: 'High',
         assignee: 'Frontend + Backend',
-        effort: 'Formular UI + API'
+        effort: '5 Story Points'
       }
     },
     { 
       id: 'US3', 
       title: 'Gestionare profil utilizator', 
-      points: 1, 
+      points: 3, 
       status: 'done',
+      category: '🧑‍🎓 Gestionarea Utilizatorilor',
       details: {
-        description: 'SCSP 3: Ca utilizator autentificat, vreau să îmi gestionez profilul personal.',
+        description: 'Ca utilizator, vreau să-mi pot gestiona profilul personal (ex: schimbare parolă, actualizare date de contact) pentru a menține informațiile mele la zi.',
         acceptanceCriteria: [
-          'Pagină React pentru vizualizare/editare date personale',
+          'Pagină profil cu informații utilizator editabile',
           'Funcționalitate schimbare parolă cu validări',
-          'Endpoint REST pentru actualizare profil în MySQL',
-          'Feedback vizual (spinner, toast) la modificări',
-          'Hashing bcrypt pentru parole și rollback la eroare'
+          'Actualizare date de contact (telefon, adresă)',
+          'Upload imagine profil cu redimensionare automată',
+          'Validare date modificate înainte de salvare',
+          'Confirmare prin email pentru modificări sensibile'
         ],
         priority: 'Medium',
         assignee: 'Frontend + Backend',
-        effort: 'UI + API actualizare'
+        effort: '3 Story Points'
       }
     },
     { 
       id: 'US4', 
-      title: 'Vizualizare orar basic student', 
-      points: 1, 
+      title: 'Vizualizare orar student', 
+      points: 3, 
       status: 'done',
+      category: '📅 Gestionarea Orarelor',
       details: {
-        description: 'SCSP 4: Ca student, vreau să vizualizez orarul pentru a cunoaște programul.',
+        description: 'Ca student, vreau să pot vizualiza orarul meu personalizat pentru a ști când și unde am cursuri, seminarii și examene.',
         acceptanceCriteria: [
-          'Componentă React cu afișare orar structurat pe zile/ore',
-          'Interogare rapidă MySQL pe ID student',
-          'Tabele pentru orare în baza de date',
-          'Lista cursuri cu detalii (sală, profesor)',
-          'Design responsive pentru mobile'
+          'Afișare orar în format săptămânal sau zilnic',
+          'Informații complete pentru fiecare activitate (materie, profesor, sală)',
+          'Filtrare pe tip activitate (curs, seminar, laborator)',
+          'Navigare între săptămânile semestrului',
+          'Export orar în format PDF sau iCal',
+          'Notificări pentru modificări de orar'
         ],
         priority: 'High',
-        assignee: 'Fullstack',
-        effort: 'UI + DB'
+        assignee: 'Frontend + Backend',
+        effort: '3 Story Points'
       }
     },
     { 
       id: 'US5', 
       title: 'Vizualizare orar profesor', 
-      points: 1, 
+      points: 3, 
       status: 'in-progress',
+      category: '📅 Gestionarea Orarelor',
       details: {
-        description: 'SCSP 5: Ca profesor, vreau să vizualizez orarul meu cu navigare pe săptămâni.',
+        description: 'Ca profesor, vreau să pot vizualiza orarul cursurilor pe care le predau pentru a-mi organiza activitatea didactică.',
         acceptanceCriteria: [
-          'Componentă React cu navigare între săptămâni',
-          'Indicatoare vizuale pentru tipuri activități',
-          'Endpoint Node.js pentru preluare evenimente profesor',
-          'Grupare după zi și oră cu JSON structurat',
-          'Afișare detalii complete pentru fiecare activitate'
+          'Vizualizare completă orar pentru toate cursurile predate',
+          'Informații detaliate despre grupe și săli',
+          'Posibilitate de filtrare pe materie sau grupă',
+          'Vedere lunară și săptămânală',
+          'Indicatori pentru conflicte sau suprapuneri',
+          'Export și sincronizare cu calendare externe'
         ],
         priority: 'Medium',
         assignee: 'Frontend + Backend',
-        effort: 'UI + API'
+        effort: '3 Story Points'
       }
     },
     { 
       id: 'US6', 
-      title: 'Creare & editare orar administrator', 
-      points: 1, 
-      status: 'in-progress',
+      title: 'Creare și modificare orare', 
+      points: 5, 
+      status: 'planned',
+      category: '📅 Gestionarea Orarelor',
       details: {
-        description: 'SCSP 6: Ca administrator, vreau să creez și editez orare pentru organizarea activităților.',
+        description: 'Ca personal administrativ, vreau să pot crea și modifica orare pentru cursuri, seminarii și laboratoare pentru a asigura o planificare eficientă.',
         acceptanceCriteria: [
-          'Formular React cu dropdown-uri pentru sală/grupă/profesor',
-          'Avertismente vizuale pentru conflicte orar',
-          'Validare backend suprapuneri cu interogări SQL complexe',
-          'Verificări interval orar și disponibilitate resurse',
-          'Mesaje detaliate despre conflicte pentru UI'
+          'Interfață drag-and-drop pentru crearea orarelor',
+          'Validare automată conflicte de sală și profesor',
+          'Alocare automată săli pe baza capacității',
+          'Gestionare constrainte (disponibilitate profesor, restricții sală)',
+          'Previzualizare și aprobare înainte de publicare',
+          'Notificare automată utilizatori pentru modificări'
         ],
         priority: 'High',
         assignee: 'Frontend + Backend',
-        effort: 'UI + validare backend'
+        effort: '5 Story Points'
       }
     },
     { 
       id: 'US7', 
-      title: 'Trimitere notificări', 
-      points: 1, 
-      status: 'in-progress',
+      title: 'Trimitere notificări profesor → studenți', 
+      points: 5, 
+      status: 'planned',
+      category: '🔔 Gestionarea Notificărilor',
       details: {
-        description: 'SCSP 7: Ca profesor, vreau să trimit notificări studenților pentru comunicare.',
+        description: 'Ca profesor, vreau să pot trimite notificări către studenții unui anumit curs pentru a comunica anunțuri importante.',
         acceptanceCriteria: [
-          'Panou React cu editor rich-text pentru mesaje',
-          'Selectare multiplă grupelor cu previzualizare',
-          'Buton trimitere cu confirmare tip modal',
-          'Endpoint Node.js pentru salvare și trimitere',
-          'WebSocket/Push pentru notificare instant'
+          'Editor rich-text pentru compunerea mesajelor',
+          'Selectare destinatari pe grupe sau cursuri',
+          'Opțiuni de prioritate și urgență',
+          'Programare trimitere pentru moment specific',
+          'Confirmare citire de către studenți',
+          'Istoric notificări trimise cu statistici'
         ],
         priority: 'High',
         assignee: 'Frontend + Backend',
-        effort: 'UI + API'
+        effort: '5 Story Points'
       }
     },
     { 
       id: 'US8', 
       title: 'Vizualizare notificări student', 
-      points: 1, 
-      status: 'in-progress',
+      points: 3, 
+      status: 'planned',
+      category: '🔔 Gestionarea Notificărilor',
       details: {
-        description: 'SCSP 8: Ca student, vreau să vizualizez notificările primite.',
+        description: 'Ca student, vreau să pot vizualiza notificările primite în cadrul sistemului pentru a fi la curent cu informațiile relevante.',
         acceptanceCriteria: [
-          'Dashboard React cu notificări sortate după dată',
-          'Opțiuni filtrare pe curs și marcare "citit"',
-          'Paginare și indicator notificări noi',
-          'Integrare cu sistemul de notificări real-time',
-          'Arhivare notificări vechi automat'
+          'Listă notificări sortate cronologic',
+          'Indicatori pentru notificări necitite',
+          'Filtrare pe materie, profesor sau tip',
+          'Marcare ca citite/necitite',
+          'Ștergere notificări vechi',
+          'Notificări push în browser pentru mesaje urgente'
         ],
         priority: 'Medium',
         assignee: 'Frontend + Backend',
-        effort: 'UI + API'
+        effort: '3 Story Points'
+      }
+    },
+    { 
+      id: 'US9', 
+      title: 'Notificări automate sistem', 
+      points: 8, 
+      status: 'planned',
+      category: '🔔 Gestionarea Notificărilor',
+      details: {
+        description: 'Ca sistem, vreau să generez notificări automate pentru modificări de orar sau publicarea rezultatelor academice pentru a informa rapid utilizatorii.',
+        acceptanceCriteria: [
+          'Detectare automată modificări în sistem',
+          'Template-uri personalizabile pentru diferite tipuri evenimente',
+          'Reguli de trimitere bazate pe roluri și preferințe',
+          'Sistem de queue pentru procesarea în masă',
+          'Integrare cu email și SMS pentru notificări externe',
+          'Dashboard de monitorizare și statistici'
+        ],
+        priority: 'Medium',
+        assignee: 'Backend + DevOps',
+        effort: '8 Story Points'
+      }
+    },
+    { 
+      id: 'US10', 
+      title: 'Introducere note de către profesor', 
+      points: 8, 
+      status: 'planned',
+      category: '📊 Gestionarea Rezultatelor Academice',
+      details: {
+        description: 'Ca profesor, vreau să pot introduce notele studenților pentru cursurile mele pentru a actualiza situația lor academică.',
+        acceptanceCriteria: [
+          'Interfață tabelară pentru introducerea notelor',
+          'Validare note în intervalele permise',
+          'Calcul automat medii pe parcurs și finale',
+          'Comentarii și observații pentru fiecare notă',
+          'Istoric modificări cu audit trail',
+          'Backup automat și posibilitate de restaurare'
+        ],
+        priority: 'High',
+        assignee: 'Frontend + Backend',
+        effort: '8 Story Points'
+      }
+    },
+    { 
+      id: 'US11', 
+      title: 'Vizualizare note student', 
+      points: 5, 
+      status: 'planned',
+      category: '📊 Gestionarea Rezultatelor Academice',
+      details: {
+        description: 'Ca student, vreau să pot vizualiza istoricul complet al notelor mele pentru a-mi monitoriza progresul academic.',
+        acceptanceCriteria: [
+          'Dashboard cu toate notele pe semestre',
+          'Grafice de evoluție și tendințe',
+          'Calculul mediei generale și pe materii',
+          'Comparație cu media grupei (opțional)',
+          'Export rapoarte în format PDF',
+          'Notificări pentru note noi publicate'
+        ],
+        priority: 'Medium',
+        assignee: 'Frontend + Backend',
+        effort: '5 Story Points'
+      }
+    },
+    { 
+      id: 'US12', 
+      title: 'Evidență prezență studenți', 
+      points: 5, 
+      status: 'planned',
+      category: '📊 Gestionarea Rezultatelor Academice',
+      details: {
+        description: 'Ca profesor, vreau să pot înregistra prezențele studenților la cursuri și seminarii pentru a ține evidența participării.',
+        acceptanceCriteria: [
+          'Interfață rapidă pentru marcarea prezenței',
+          'Import liste studenți din grupele înscrise',
+          'Marcarea absenței motivate/nemotivate',
+          'Rapoarte de prezență pe semestru',
+          'Notificări pentru studenți cu multe absențe',
+          'Integrare cu sistemul de note pentru bonificații'
+        ],
+        priority: 'Medium',
+        assignee: 'Frontend + Backend',
+        effort: '5 Story Points'
+      }
+    },
+    { 
+      id: 'US13', 
+      title: 'Creare cursuri și alocare profesori', 
+      points: 5, 
+      status: 'planned',
+      category: '📚 Gestionarea cursurilor și grupelor',
+      details: {
+        description: 'Ca personal administrativ, vreau să pot crea noi cursuri și să aloc profesori la acestea pentru a organiza oferta educațională.',
+        acceptanceCriteria: [
+          'Formular complet pentru definirea cursurilor',
+          'Alocare profesori pe baza specializării',
+          'Setarea creditelor și orelor pentru fiecare curs',
+          'Definirea prerequisitelor între cursuri',
+          'Gestiunea capacității și resurselor necesare',
+          'Aprobare și publicare în catalogul oficial'
+        ],
+        priority: 'High',
+        assignee: 'Frontend + Backend',
+        effort: '5 Story Points'
+      }
+    },
+    { 
+      id: 'US14', 
+      title: 'Înscriere studenți la cursuri și grupare', 
+      points: 8, 
+      status: 'planned',
+      category: '📚 Gestionarea cursurilor și grupelor',
+      details: {
+        description: 'Ca personal administrativ, vreau să pot înscrie studenți la cursuri și să-i organizez în grupe de studiu pentru o gestionare eficientă.',
+        acceptanceCriteria: [
+          'Sistem de înscriere cu validare prerequisite',
+          'Algoritm de grupare automată sau manuală',
+          'Gestionarea capacităților maxime per grupă',
+          'Rezolvarea conflictelor de orar automat',
+          'Interface pentru transferuri între grupe',
+          'Raportare statistici înscrieri și ocupare'
+        ],
+        priority: 'High',
+        assignee: 'Frontend + Backend',
+        effort: '8 Story Points'
+      }
+    },
+    { 
+      id: 'US15', 
+      title: 'Import masiv studenți', 
+      points: 13, 
+      status: 'planned',
+      category: '📚 Gestionarea cursurilor și grupelor',
+      details: {
+        description: 'Ca personal administrativ, vreau să pot importa în masă studenți în sistem (ex: dintr-un fișier Excel) pentru a reduce munca manuală.',
+        acceptanceCriteria: [
+          'Parser pentru multiple formate (Excel, CSV, XML)',
+          'Validare și curățare date în timpul importului',
+          'Mapare automată câmpuri cu previzualizare',
+          'Detectare și gestionare duplicate',
+          'Raport detaliat cu succese și erori',
+          'Rollback complet în caz de probleme majore',
+          'Procesare în background pentru fișiere mari'
+        ],
+        priority: 'Medium',
+        assignee: 'Backend + DevOps',
+        effort: '13 Story Points'
       }
     }
   ]
+    
 
   const sprints = [
     { 
@@ -311,19 +482,28 @@ function App() {
 
   const challenges = [
     {
-      title: 'Estimarea timpului',
-      description: 'Dificultatea în estimarea precisă a Story Points pentru funcționalități complexe',
-      solution: 'Utilizarea Planning Poker și descompunerea task-urilor mari în sub-sarcini mai mici'
+      title: 'Estimarea precisă a efortului pentru funcționalități complexe',
+      description: 'Dificultatea în estimarea precisă a Story Points și a timpului necesar pentru implementarea funcționalităților mai complexe din sistem.',
+      solution: 'S-a utilizat tehnica Planning Poker în sesiunile de rafinare a Product Backlog-ului, implicând toate rolurile în procesul de estimare. User Stories mari au fost descompuse în sub-taskuri mai mici și mai clare, reducând incertitudinea și crescând acuratețea estimărilor.',
+      impact: 'Îmbunătățirea acurateței estimărilor cu ~30% prin descompunerea în sub-taskuri'
     },
     {
-      title: 'Colaborarea echipei',
-      description: 'Coordonarea muncii în echipă și comunicarea eficientă',
-      solution: 'Daily Scrum meetings și utilizarea YouTrack pentru transparența sarcinilor'
+      title: 'Menținerea ritmului de lucru într-un proiect individual',
+      description: 'Provocarea de a simula disciplina unei echipe Agile în contextul unui proiect dezvoltat individual, fără beneficiile colaborării și peer-review-ului.',
+      solution: 'Pentru a simula disciplina echipei Agile, am introdus sesiuni de lucru zilnice cu obiective mici, ca un pseudo „Daily Scrum". Board-ul YouTrack a fost utilizat pentru a urmări constant progresul și a marca sarcinile în funcție de stadiu: To Do, In Progress, Preview, Done.',
+      impact: 'Menținerea unui ritm constant de dezvoltare și vizibilitate clară asupra progresului'
     },
     {
-      title: 'Configurarea CI/CD',
-      description: 'Complexitatea configurării pipeline-ului de automatizare',
-      solution: 'Implementare incrementală și utilizarea template-urilor GitHub Actions'
+      title: 'Integrarea unui pipeline CI/CD funcțional',
+      description: 'Complexitatea configurării unui sistem de integrare continuă și deployment automat pentru stack-ul tehnologic ales (React + Node.js + MySQL).',
+      solution: 'Inițial, configurarea GitHub Actions a fost o provocare din cauza lipsei de exemple exacte pentru stack-ul proiectului. S-a pornit cu un workflow simplu pentru build și test, apoi s-au adăugat treptat pași pentru deploy și rularea automată a testelor. Template-uri existente și documentația GitHub Actions au fost reutilizate și adaptate.',
+      impact: 'Pipeline funcțional cu build automat, teste și deployment pe fiecare commit'
+    },
+    {
+      title: 'Detectarea și gestionarea erorilor (bug-uri)',
+      description: 'Simularea procesului de QA și gestionarea bug-urilor într-un proiect individual, fără o echipă dedicată de testare.',
+      solution: 'Pentru fiecare Sprint, au fost presupuse și documentate bug-uri posibile, apoi adăugate în YouTrack ca Bug issues și distribuite pe coloanele relevante (ex: Bugs, In Progress, Preview). Această abordare a permis simularea realistă a procesului de testare și fixare, chiar dacă nu a existat o echipă QA dedicată.',
+      impact: 'Proces structurat de identificare și rezolvare a problemelor înainte de producție'
     }
   ]
 
@@ -358,9 +538,10 @@ function App() {
       </header>
 
       {/* Main Content */}
-      <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <Tabs value={activeTab} onValueChange={handleTabChange} className="space-y-6">
-          <TabsList className="grid w-full grid-cols-6 bg-gradient-to-r from-blue-50 to-purple-50 p-1 rounded-lg">
+      <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 md:py-8">
+        <Tabs value={activeTab} onValueChange={handleTabChange} className="space-y-4 md:space-y-6">
+          {/* Desktop Navigation */}
+          <TabsList className="hidden md:grid w-full grid-cols-6 bg-gradient-to-r from-blue-50 to-purple-50 p-1 rounded-lg">
             <TabsTrigger value="overview" className="tab-trigger">Prezentare Generală</TabsTrigger>
             <TabsTrigger value="requirements" className="tab-trigger">Cerințe SRS</TabsTrigger>
             <TabsTrigger value="methodology" className="tab-trigger">Metodologie</TabsTrigger>
@@ -368,6 +549,62 @@ function App() {
             <TabsTrigger value="architecture" className="tab-trigger">Arhitectură</TabsTrigger>
             <TabsTrigger value="challenges" className="tab-trigger">Provocări</TabsTrigger>
           </TabsList>
+
+          {/* Mobile Navigation - Bottom Bar */}
+          <div className="md:hidden mobile-bottom-nav">
+            <div className="mobile-nav-container">
+              <button
+                onClick={() => handleTabChange('overview')}
+                className={`mobile-nav-tab ${activeTab === 'overview' ? 'active' : ''}`}
+              >
+                <Target className="h-4 w-4" />
+                {activeTab === 'overview' && <span className="mobile-tab-text">Prezentare</span>}
+              </button>
+              
+              <button
+                onClick={() => handleTabChange('requirements')}
+                className={`mobile-nav-tab ${activeTab === 'requirements' ? 'active' : ''}`}
+              >
+                <FileText className="h-4 w-4" />
+                {activeTab === 'requirements' && <span className="mobile-tab-text">Cerințe</span>}
+              </button>
+              
+              <button
+                onClick={() => handleTabChange('methodology')}
+                className={`mobile-nav-tab ${activeTab === 'methodology' ? 'active' : ''}`}
+              >
+                <Zap className="h-4 w-4" />
+                {activeTab === 'methodology' && <span className="mobile-tab-text">Metodologie</span>}
+              </button>
+              
+              <button
+                onClick={() => handleTabChange('planning')}
+                className={`mobile-nav-tab ${activeTab === 'planning' ? 'active' : ''}`}
+              >
+                <Calendar className="h-4 w-4" />
+                {activeTab === 'planning' && <span className="mobile-tab-text">Planificare</span>}
+              </button>
+              
+              <button
+                onClick={() => handleTabChange('architecture')}
+                className={`mobile-nav-tab ${activeTab === 'architecture' ? 'active' : ''}`}
+              >
+                <Code className="h-4 w-4" />
+                {activeTab === 'architecture' && <span className="mobile-tab-text">Arhitectură</span>}
+              </button>
+              
+              <button
+                onClick={() => handleTabChange('challenges')}
+                className={`mobile-nav-tab ${activeTab === 'challenges' ? 'active' : ''}`}
+              >
+                <Target className="h-4 w-4" />
+                {activeTab === 'challenges' && <span className="mobile-tab-text">Provocări</span>}
+              </button>
+            </div>
+          </div>
+
+          {/* Add bottom padding on mobile to account for fixed nav */}
+          <div className="md:hidden h-16"></div>
 
           <div className={`transition-opacity duration-150 ${isTabChanging ? 'opacity-0' : 'opacity-100'}`}>
           {/* Overview Tab */}
@@ -961,18 +1198,32 @@ function App() {
               <CardContent>
                 <div className="space-y-6 grid-animated">
                   {challenges.map((challenge, index) => (
-                    <div key={index} className="border rounded-lg p-6">
+                    <div key={index} className="border rounded-lg p-6 bg-gradient-to-r from-gray-50 to-blue-50">
                       <div className="flex items-start space-x-4">
                         <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0">
                           <Target className="h-6 w-6 text-red-600" />
                         </div>
                         <div className="flex-1">
-                          <h4 className="font-semibold text-red-700 mb-2">Provocare: {challenge.title}</h4>
-                          <p className="text-gray-600 mb-4">{challenge.description}</p>
-                          <div className="bg-green-50 p-4 rounded-lg">
-                            <h5 className="font-semibold text-green-700 mb-1">Soluție Aplicată:</h5>
-                            <p className="text-sm text-green-600">{challenge.solution}</p>
+                          <h4 className="font-semibold text-red-700 mb-3 text-lg leading-relaxed">
+                            🚨 {challenge.title}
+                          </h4>
+                          <div className="mb-4 p-3 bg-red-50 rounded-lg border-l-4 border-red-300">
+                            <p className="text-gray-700 leading-relaxed">{challenge.description}</p>
                           </div>
+                          <div className="bg-green-50 p-4 rounded-lg border-l-4 border-green-300 mb-3">
+                            <h5 className="font-semibold text-green-700 mb-2 flex items-center">
+                              ✅ Soluție Aplicată
+                            </h5>
+                            <p className="text-green-700 leading-relaxed">{challenge.solution}</p>
+                          </div>
+                          {challenge.impact && (
+                            <div className="bg-blue-50 p-3 rounded-lg border-l-4 border-blue-300">
+                              <h5 className="font-semibold text-blue-700 mb-1 flex items-center">
+                                📊 Impact
+                              </h5>
+                              <p className="text-sm text-blue-600 leading-relaxed">{challenge.impact}</p>
+                            </div>
+                          )}
                         </div>
                       </div>
                     </div>
