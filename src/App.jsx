@@ -628,7 +628,7 @@ function App() {
                   <BarChart3 className="h-4 w-4 text-muted-foreground" />
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-bold text-blue-600">15</div>
+                  <div className="text-2xl font-bold text-blue-600">93</div>
                   <p className="text-xs text-muted-foreground">SCSP în 6 Sprint-uri</p>
                 </CardContent>
               </Card>
