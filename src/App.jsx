@@ -543,7 +543,7 @@ function App() {
                 <p className="text-sm text-gray-600">Proiect Individual - Managementul Dezvoltării Software</p>
               </div>
             </div>
-            <div className="flex space-x-2">
+            <div className="hidden md:flex items-center space-x-2">
               <div className="flex items-center space-x-2">
                 <Button variant="ghost" size="sm" aria-label="decrease-font" onClick={() => setFontScale(prev => Math.max(0.75, +(prev - 0.125).toFixed(3)))}>
                   A-
@@ -1331,6 +1331,20 @@ function App() {
           </div>
         </div>
       </footer>
+
+      {/* Mobile floating accessibility controls */}
+      <div className="accessibility-floating md:hidden" role="region" aria-label="Accessibility font size controls">
+        <Button variant="outline" size="sm" aria-label="decrease-font-mobile" onClick={() => setFontScale(prev => Math.max(0.75, +(prev - 0.125).toFixed(3)))}>
+          A-
+        </Button>
+        <Button variant="outline" size="sm" aria-label="reset-font-mobile" onClick={() => setFontScale(1)}>
+          A
+        </Button>
+        <Button variant="outline" size="sm" aria-label="increase-font-mobile" onClick={() => setFontScale(prev => Math.min(2, +(prev + 0.125).toFixed(3)))}>
+          A+
+        </Button>
+        <div className="scale-label">{Math.round(fontScale * 100)}%</div>
+      </div>
     </div>
   )
 }
