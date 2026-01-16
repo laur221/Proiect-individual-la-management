@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button.jsx'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card.jsx'
 import { Badge } from '@/components/ui/badge.jsx'
@@ -34,6 +34,27 @@ function App() {
   const [expandedUserStory, setExpandedUserStory] = useState(null)
   const [animationKey, setAnimationKey] = useState(0)
   const [isTabChanging, setIsTabChanging] = useState(false)
+  const [fontScale, setFontScale] = useState(1)
+
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem('appFontScale')
+      const initial = saved ? parseFloat(saved) : 1
+      setFontScale(initial)
+      document.documentElement.style.setProperty('--app-font-scale', String(initial))
+    } catch (e) {
+      // ignore
+    }
+  }, [])
+
+  useEffect(() => {
+    document.documentElement.style.setProperty('--app-font-scale', String(fontScale))
+    try {
+      localStorage.setItem('appFontScale', String(fontScale))
+    } catch (e) {
+      // ignore storage errors
+    }
+  }, [fontScale])
 
   const handleTabChange = (newTab) => {
     if (newTab !== activeTab) {
@@ -523,6 +544,19 @@ function App() {
               </div>
             </div>
             <div className="flex space-x-2">
+              <div className="flex items-center space-x-2">
+                <Button variant="ghost" size="sm" aria-label="decrease-font" onClick={() => setFontScale(prev => Math.max(0.75, +(prev - 0.125).toFixed(3)))}>
+                  A-
+                </Button>
+                <Button variant="ghost" size="sm" aria-label="reset-font" onClick={() => setFontScale(1)}>
+                  A
+                </Button>
+                <Button variant="ghost" size="sm" aria-label="increase-font" onClick={() => setFontScale(prev => Math.min(2, +(prev + 0.125).toFixed(3)))}>
+                  A+
+                </Button>
+                <div className="text-sm text-gray-600 px-2">{Math.round(fontScale * 100)}%</div>
+              </div>
+
               <Button 
                 variant="outline" 
                 size="sm" 
